@@ -122,7 +122,7 @@ class HeaderFive extends Component {
 															<h6>language</h6>
 															<ul>
 																<li><a href={null} onClick={() => this.changeLanguage('en')}>English</a> </li>
-																<li><a href={null} onClick={() => this.changeLanguage('fn')}>French</a> </li>
+																<li><a href={null} onClick={() => this.changeLanguage('bn')}>বাংলা</a> </li>
 															</ul>
 															<h6>currency</h6>
 															<ul className="list-inline">

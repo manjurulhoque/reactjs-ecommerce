@@ -35,10 +35,9 @@ class Root extends React.Component {
                             <Layout>
 
                                 {/*Routes For Layouts*/}
-                                <Route path={`${process.env.PUBLIC_URL}/`} component={Fashion}/>
-
-                                <Route exact path="*" component={PageNotFound} />
+                                <Route exact path="/" component={Fashion}/>
                             </Layout>
+                            <Route path="*" component={PageNotFound} />
                          </Switch>
 					  </ScrollContext>
 					</BrowserRouter>

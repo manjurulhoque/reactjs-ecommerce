@@ -7,8 +7,6 @@ import {Link} from 'react-router-dom';
 // Import custom components
 import TopCollection from './top-collection';
 import SpecialProducts from "../common/products";
-import BlogSection from "../common/blogsection";
-// import Instagram from "../common/instagram";
 import LogoBlock from "../common/logo-block";
 import {
     svgFreeShipping,
@@ -20,7 +18,8 @@ import {
 class Fashion extends Component {
 
     componentDidMount() {
-        document.getElementById("color").setAttribute("href", `#` );
+        // document.getElementById("color").setAttribute("href", `#` );
+        document.getElementById("color").setAttribute("href", `${process.env.PUBLIC_URL}/assets/css/color3.css` );
     }
 
 	render() {
@@ -162,34 +161,14 @@ class Fashion extends Component {
                         </div>
                     </section>
                 </div>
-                {/*Blog Section end*/}
-                <div className="container">
-                    <div className="row">
-                        <div className="col">
-                            <div className="title1 section-t-space">
-                                <h4>Recent Story</h4>
-                                <h2 className="title-inner1">from the blog</h2>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <section className="blog p-t-0">
-                    <BlogSection />
-                </section>
-                {/*Blog Section End*/}
-
                 {/* <Instagram /> */}
 
                 {/*logo section*/}
                 <LogoBlock />
                 {/*logo section end*/}
 
-
-
 			</div>
-			)
-
-
+		)
 	}
 }
 

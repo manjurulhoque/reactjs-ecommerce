@@ -4,6 +4,9 @@ import store from "../store";
 import { toast  } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 
+const BASE_URL = 'http://localhost:8000/v1/api';
+
+
 export const fetchProductsBegin = () => ({
     type: types.FETCH_PRODUCTS_BEGIN
 });
@@ -17,10 +20,18 @@ export const receiveProducts = products => ({
 
 export const getAllProducts = () => dispatch => {
     dispatch(fetchProductsBegin());
-    shop.getProducts(products => {
-        dispatch(receiveProducts(products));
-        return products;
-    })
+    fetch(`${BASE_URL}/products`)
+        .then(res => res.json())
+        .then(products => {
+            console.log(products);
+            dispatch(receiveProducts(products.data));
+            return products.data;
+        })
+        .catch(err => console.log(err));
+    // shop.getProducts(products => {
+    //     dispatch(receiveProducts(products));
+    //     return products;
+    // });
 }
 export const fetchSingleProduct = productId => ({
     type: types.FETCH_SINGLE_PRODUCT,
@@ -28,13 +39,10 @@ export const fetchSingleProduct = productId => ({
 })
 
 
-
-
 //it seems that I should probably use this as the basis for "Cart"
 export const addToCart = (product,qty) => (dispatch) => {
     toast.success("Item Added to Cart");
-        dispatch(addToCartUnsafe(product, qty))
-
+    dispatch(addToCartUnsafe(product, qty));
 }
 export const addToCartAndRemoveWishlist = (product,qty) => (dispatch) => {
     toast.success("Item Added to Cart");
