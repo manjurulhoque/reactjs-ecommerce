@@ -49,7 +49,7 @@ class ProductItem extends Component {
         const {product, symbol, onAddToCartClicked, onAddToWishlistClicked, onAddToCompareClicked} = this.props;
 
         let RatingStars = []
-        for(var i = 0; i < product.rating; i++) {
+        for(var i = 0; i < 5; i++) {
             RatingStars.push(<i className="fa fa-star" key={i}></i>)
         }
         return (
@@ -58,17 +58,14 @@ class ProductItem extends Component {
                         <div className="lable-block">
                             {(product.new == true)? <span className="lable3">new</span> : ''}
                             {(product.sale == true)? <span className="lable4">on sale</span> : ''}
-
                         </div>
                         <div className="front">
-                            <Link to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product.id}`} ><img
-                                src={`${
-                                    product.variants?
-                                        this.state.image?this.state.image:product.variants[0].images
-                                        :product.pictures[0]
-                                    }`}
-                                className="img-fluid"
-                                alt="" /></Link>
+                            <Link to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product.id}`} >
+                                <img
+                                    src={`${process.env.PUBLIC_URL}/assets/images/fashion/product/1.jpg`}
+                                    className="img-fluid"
+                                    alt="" />
+                            </Link>
                         </div>
                         <div className="cart-info cart-wrap">
                             <button title="Add to cart" onClick={onAddToCartClicked}>
@@ -101,18 +98,24 @@ class ProductItem extends Component {
                                 {RatingStars}
                             </div>
                             <Link to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product.id}`}>
-                                <h6>{product.name}</h6>
+                                <h6>{product.title}</h6>
                             </Link>
-                            <h4>{symbol}{product.price-(product.price*product.discount/100)}
-                                <del><span className="money">{symbol}{product.price}</span></del>
+                            <h4>
+                                {symbol}
+                                {
+                                    product.discount ? product.price-(product.price*product.discount/100) : product.price
+                                }
+                                {
+                                    product.discount ? <del><span className="money">{symbol}{product.price}</span></del> : ''
+                                }
                             </h4>
-                            {product.variants?
+                            {/* {product.variants?
                             <ul className="color-variant">
                                 {product.variants.map((vari, i) => {
                                     return (
                                         <li className={vari.color} key={i} title={vari.color} onClick={() => this.onClickHandle(vari.images)}></li>)
                                 })}
-                            </ul>:''}
+                            </ul>:''} */}
                         </div>
                     </div>
                     <Modal open={this.state.open} onClose={this.onCloseModal} center>
@@ -121,13 +124,13 @@ class ProductItem extends Component {
                                 <div className="modal-body">
                                     <div className="row">
                                         <div className="col-lg-6  col-xs-12">
-                                            <div className="quick-view-img">
+                                            {/* <div className="quick-view-img">
                                                 <img src={`${
                                                     product.variants?
                                                         this.state.image?this.state.image:product.variants[0].images
                                                         :product.pictures[0]
                                                     }`} alt="" className="img-fluid" />
-                                            </div>
+                                            </div> */}
                                         </div>
                                         <div className="col-lg-6 rtl-text">
                                             <div className="product-right">

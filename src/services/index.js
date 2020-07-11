@@ -98,10 +98,11 @@ export const getTrendingTagCollection = (products, type, tag) => {
 
 // Get Trending Collection
 export const getTrendingCollection = (products, type) => {
-    const items = products.filter(product => {
-        return product.category === type;
-    })
-    return items.slice(0,8)
+    // const items = products.filter(product => {
+    //     return product.category === type;
+    // })
+    return products.slice(0, 8);
+    // return items.slice(0,8);
 }
 
 // Get Special 5 Collection
